@@ -1,0 +1,44 @@
+---
+title: "titanic_analysis"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+require("knitr")
+knitr::opts_chunk$set(echo = TRUE)
+
+opts_knit$set(root.dir = "../")
+```
+
+
+# Load titanic data
+```{r}
+source('import/dataset_loader.r')
+dat <- loadtitanic()
+```
+## Displaying struture of Data
+
+```{r}
+str(dat)
+```
+
+converting Survived and pclass to factor
+```{r}
+dat$Survived <- as.factor(dat$Survived)
+dat$Pclass <- as.factor(dat$Pclass)
+```
+
+
+# Summarizing the data
+```{r}
+source("vis/summary.r")
+tablesummary(dat, c("Survived","Pclass"))
+```
+
+## vislualizing survival by class
+```{r}
+source("vis/plots.r")
+plot_survival(dat)
+
+```
+
